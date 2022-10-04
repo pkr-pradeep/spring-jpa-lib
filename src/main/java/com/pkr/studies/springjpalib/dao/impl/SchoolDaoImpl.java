@@ -17,18 +17,19 @@ import com.pkr.studies.springjpalib.jpa.repository.ISchoolRepository;
 public class SchoolDaoImpl implements ISchoolDao {
 
 	public static final Logger LOGGER = LoggerFactory.getLogger(SchoolDaoImpl.class);
-	
+
 	@Autowired
 	ISchoolRepository iSchoolRepository;
-	
+
 	@Override
 	public void insertSchoolData(School school) {
 		try {
-			List<School> schoolDataList = iSchoolRepository.findAllSchools(school.getSTD_ID(), school.getSTD_NM(), school.getROLL_NM());
-			if(CollectionUtils.isEmpty(schoolDataList)) {
+			List<School> schoolDataList = iSchoolRepository.findAllSchools(school.getSTD_ID(), school.getSTD_NM(),
+					school.getROLL_NM());
+			if (CollectionUtils.isEmpty(schoolDataList)) {
 				iSchoolRepository.save(school);
 			}
-		} catch(Exception ex) {
+		} catch (Exception ex) {
 			LOGGER.error(ExceptionUtils.getStackTrace(ex));
 		}
 	}
@@ -36,11 +37,13 @@ public class SchoolDaoImpl implements ISchoolDao {
 	@Override
 	public void updateStudentName(String newName, School school) {
 		try {
-			List<School> schoolDataList = iSchoolRepository.findAllSchools(school.getSTD_ID(), school.getSTD_NM(), school.getROLL_NM());
-			if(!CollectionUtils.isEmpty(schoolDataList)) {
-				iSchoolRepository.updateStudentName(newName, school.getSTD_ID(), school.getSTD_NM(), school.getROLL_NM());
+			List<School> schoolDataList = iSchoolRepository.findAllSchools(school.getSTD_ID(), school.getSTD_NM(),
+					school.getROLL_NM());
+			if (!CollectionUtils.isEmpty(schoolDataList)) {
+				iSchoolRepository.updateStudentName(newName, school.getSTD_ID(), school.getSTD_NM(),
+						school.getROLL_NM());
 			}
-		} catch(Exception ex) {
+		} catch (Exception ex) {
 			LOGGER.error(ExceptionUtils.getStackTrace(ex));
 		}
 	}

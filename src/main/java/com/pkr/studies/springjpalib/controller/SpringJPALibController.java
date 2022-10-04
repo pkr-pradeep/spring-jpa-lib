@@ -28,6 +28,7 @@ public class SpringJPALibController {
 
 	/**
 	 * http://localhost:8080/app/saveSchool?name=Prasanna&roll=2&std=24&grade=A
+	 * 
 	 * @param studentName
 	 * @param roll
 	 * @param stdId
@@ -43,11 +44,11 @@ public class SpringJPALibController {
 		school.setROLL_NM(roll);
 		school.setSTD_ID(stdId);
 		school.setGRADE(grade);
-		
+
 		processMessage.save(school);
 		return new ResponseEntity<String>("Done", HttpStatus.OK);
 	}
-	
+
 	@RequestMapping(value = "/updateSchool", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<String> updateSchoolData(@RequestParam("name") String newName, @RequestBody School school) {
 		processMessage.update(newName, school);

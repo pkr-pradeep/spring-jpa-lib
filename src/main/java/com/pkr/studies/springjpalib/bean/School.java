@@ -11,7 +11,7 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name="SCHOOL", schema = "PKRSTUDIES")
+@Table(name = "SCHOOL", schema = "PKRSTUDIES")
 @IdClass(SchoolCompositeKey.class)
 public class School {
 	@Id
