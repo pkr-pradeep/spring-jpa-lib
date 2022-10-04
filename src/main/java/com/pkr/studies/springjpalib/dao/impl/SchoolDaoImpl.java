@@ -1,5 +1,6 @@
 package com.pkr.studies.springjpalib.dao.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang3.exception.ExceptionUtils;
@@ -20,6 +21,18 @@ public class SchoolDaoImpl implements ISchoolDao {
 
 	@Autowired
 	ISchoolRepository iSchoolRepository;
+	
+	@Override
+	public List<School> getAllSchoolData(School school) {
+		List<School> schoolDataList = new ArrayList<School>();
+		try {
+			schoolDataList = iSchoolRepository.findAllSchools(school.getSTD_ID(), school.getSTD_NM(),
+					school.getROLL_NM());
+		} catch (Exception ex) {
+			LOGGER.error(ExceptionUtils.getStackTrace(ex));
+		}
+		return schoolDataList;
+	}
 
 	@Override
 	public void insertSchoolData(School school) {

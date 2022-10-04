@@ -1,5 +1,7 @@
 package com.pkr.studies.springjpalib.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +16,10 @@ public class ProcessMessage {
 
 	@Autowired
 	ISchoolDao iSchoolDao;
+	
+	public List<School> getAllSchoolData(School school) {
+		return iSchoolDao.getAllSchoolData(school);
+	}
 
 	public void save(School school) {
 		iSchoolDao.insertSchoolData(school);
