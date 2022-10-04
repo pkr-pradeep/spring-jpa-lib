@@ -19,5 +19,10 @@ public class ProcessMessage {
 		iSchoolDao.insertSchoolData(school);
 		log.info("inserted successfully"+school.toString());
 	}
+	
+	public void update(String newName, School school) {
+		iSchoolDao.updateStudentName(newName, school);
+		log.info("inserted successfully"+school.toString());
+	}
 
 }

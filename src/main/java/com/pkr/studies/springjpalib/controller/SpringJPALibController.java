@@ -2,7 +2,9 @@ package com.pkr.studies.springjpalib.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,6 +26,14 @@ public class SpringJPALibController {
 		return "Hello Welcome to Spring JPA Library";
 	}
 
+	/**
+	 * http://localhost:8080/app/saveSchool?name=Prasanna&roll=2&std=24&grade=A
+	 * @param studentName
+	 * @param roll
+	 * @param stdId
+	 * @param grade
+	 * @return
+	 */
 	@RequestMapping(value = "/saveSchool", method = RequestMethod.POST)
 	public ResponseEntity<String> saveSchool(@RequestParam("name") String studentName,
 			@RequestParam("roll") String roll, @RequestParam("std") Integer stdId, @RequestParam("grade") char grade) {
@@ -35,6 +45,12 @@ public class SpringJPALibController {
 		school.setGRADE(grade);
 		
 		processMessage.save(school);
+		return new ResponseEntity<String>("Done", HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/updateSchool", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<String> updateSchoolData(@RequestParam("name") String newName, @RequestBody School school) {
+		processMessage.update(newName, school);
 		return new ResponseEntity<String>("Done", HttpStatus.OK);
 	}
 }

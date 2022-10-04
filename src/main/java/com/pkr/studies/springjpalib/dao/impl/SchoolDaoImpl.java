@@ -32,4 +32,16 @@ public class SchoolDaoImpl implements ISchoolDao {
 			LOGGER.error(ExceptionUtils.getStackTrace(ex));
 		}
 	}
+
+	@Override
+	public void updateStudentName(String newName, School school) {
+		try {
+			List<School> schoolDataList = iSchoolRepository.findAllSchools(school.getSTD_ID(), school.getSTD_NM(), school.getROLL_NM());
+			if(!CollectionUtils.isEmpty(schoolDataList)) {
+				iSchoolRepository.updateStudentName(newName, school.getSTD_ID(), school.getSTD_NM(), school.getROLL_NM());
+			}
+		} catch(Exception ex) {
+			LOGGER.error(ExceptionUtils.getStackTrace(ex));
+		}
+	}
 }

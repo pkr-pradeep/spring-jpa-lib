@@ -30,3 +30,8 @@ Naturally, it should be:
 ORA-01950: no privileges on tablespace 'USERS'
 =============================================================================
 ALTER USER PKRSTUDIES quota unlimited on USERS;
+
+=============================================================================	
+Swagger
+=============================================================================
+http://localhost:8080/swagger-ui.html
